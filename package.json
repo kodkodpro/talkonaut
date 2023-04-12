@@ -1,0 +1,25 @@
+{
+  "name": "talkonaut",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Andrew Kodkod",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts"
+  },
+  "dependencies": {
+    "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.38.0",
+    "eslint-import-resolver-typescript": "^3.5.5",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "openai": "^3.2.1",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.0.4"
+  }
+}
