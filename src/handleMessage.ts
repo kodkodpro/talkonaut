@@ -1,3 +1,4 @@
+import Sentry from "@sentry/node"
 import TelegramBot from "node-telegram-bot-api"
 import bot from "./bot"
 import handlers from "./handlers"
@@ -36,11 +37,15 @@ export default async function handleMessage(message: TelegramBot.Message) {
   } catch (error) {
     if (error instanceof BotError) {
       await bot.sendMessage(chatId, error.message)
-    } else if (error instanceof Error) {
+      return
+    }
+
+    if (error instanceof Error) {
       console.error(error.message)
       console.error(error.stack)
-
-      await bot.sendMessage(chatId, "Sorry, something went wrong 😢")
     }
+
+    Sentry.captureException(error)
+    await bot.sendMessage(chatId, "Sorry, something went wrong 😢")
   }
 }
