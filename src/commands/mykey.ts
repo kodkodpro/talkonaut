@@ -9,6 +9,6 @@ export default async function mykey(message: TelegramBot.Message, chat: Chat) {
 
     await sendMessage(chat, `🔑 Your OpenAI key is: *${maskedKey}*`)
   } else {
-    await sendMessage(chat, "🤷‍♀️ You haven't set your OpenAI key yet")
+    await sendMessage(chat, "🤷‍♀️ You haven’t set your OpenAI key yet")
   }
 }

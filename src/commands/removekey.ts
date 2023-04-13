@@ -6,8 +6,8 @@ import { updateChat } from "../utils/chat"
 export default async function removekey(message: TelegramBot.Message, chat: Chat) {
   if (chat.openAIKey) {
     await updateChat(chat, { openAIKey: null, openAIModel: null })
-    await sendMessage(chat, "👌 Ok, I've removed your OpenAI key")
+    await sendMessage(chat, "👌 Ok, I’ve removed your OpenAI key")
   } else {
-    await sendMessage(chat, "🤷‍♀️ You don't have an OpenAI key set")
+    await sendMessage(chat, "🤷‍♀️ You don’t have an OpenAI key set")
   }
 }

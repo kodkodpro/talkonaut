@@ -27,7 +27,7 @@ export default async function setmodel(message: TelegramBot.Message, chat: Chat)
     const completion = await createAnyCompletion(chat, "test", openAIModel as Model)
 
     if (!completion) {
-      await handleInvalidModel(chat, "Unfortunately, you don't have access to this model")
+      await handleInvalidModel(chat, "Unfortunately, you don’t have access to this model")
       return
     }
 

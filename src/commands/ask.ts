@@ -13,5 +13,5 @@ export default async function ask(message: TelegramBot.Message, chat: Chat) {
   const text = removeCommand(message.text)
   const completion = await createAnyCompletion(chat, text)
 
-  await sendMessage(chat, completion || "🥴 Oops, something went wrong", { markdown: false })
+  await sendMessage(chat, completion || "🥴 Oops, something went wrong", { disableMarkdown: true })
 }

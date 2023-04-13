@@ -43,5 +43,5 @@ export default async function setkey(message: TelegramBot.Message, chat: Chat) {
 
 const handleInvalidKey = async (chat: Chat) => {
   await updateChat(chat, { nextCommand: "setkey" })
-  await sendMessage(chat, "😢 Sorry, but OpenAI key is invalid. Please send another key or /cancel this command:")
+  await sendMessage(chat, "😢 Sorry, but this OpenAI key is invalid. Please send another key or /cancel this command:")
 }

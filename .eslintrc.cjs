@@ -23,10 +23,6 @@ module.exports = {
       "error",
       2,
     ],
-    "max-len": [
-      "error",
-      120,
-    ],
     "comma-dangle": [
       "error",
       "always-multiline",
@@ -42,6 +38,18 @@ module.exports = {
     "object-curly-spacing": [
       "error",
       "always",
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "ignoreComments": true,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreRegExpLiterals": true,
+      },
     ],
     "space-before-function-paren": [
       "error",

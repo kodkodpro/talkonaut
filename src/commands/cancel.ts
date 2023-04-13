@@ -10,5 +10,5 @@ export default async function cancel(message: TelegramBot.Message, chat: Chat) {
   }
 
   await updateChat(chat, { nextCommand: null })
-  await sendMessage(chat, "😉 Ok, I've canceled it")
+  await sendMessage(chat, "😉 Ok, I’ve canceled it")
 }

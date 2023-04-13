@@ -7,10 +7,10 @@ type ErrorCode =
   | "systemError"
 
 export const ReadableErrors: Record<ErrorCode, string> = {
-  commandNotFound: "🤷‍♀️ Sorry, but I don't know this command",
-  openAIKeyNotSet: "🤷‍♀️ Sorry, but you didn't set your OpenAI key",
+  commandNotFound: "🤷‍♀️ Sorry, but I don’t know this command",
+  openAIKeyNotSet: "🤷‍♀️ Sorry, but you didn’t set your OpenAI key",
   openAIKeyInvalid: "🥴 Sorry, but your OpenAI key is invalid",
-  openAIModelNotSet: "🤷‍♀️ Sorry, but you didn't set your OpenAI model",
+  openAIModelNotSet: "🤷‍♀️ Sorry, but you didn’t set your OpenAI model",
   openAIModelInvalid: "🥴 Sorry, but your OpenAI model is invalid",
   systemError: "🥴 Sorry, but something went wrong",
 }
