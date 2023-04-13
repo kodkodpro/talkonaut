@@ -1,3 +1,4 @@
+import fs from "fs"
 import { Chat } from "@prisma/client"
 import { Configuration, OpenAIApi } from "openai"
 import { BotError } from "./error"
@@ -94,7 +95,7 @@ export async function createAnyCompletion(chat: Chat, prompt: string, model?: Mo
   }
 }
 
-export async function findBestModel(chat: Chat) {
+export async function findBestAvailableCompletionModel(chat: Chat) {
   for (const model of allModels) {
     try {
       const text = await createAnyCompletion(chat, "test", model)
@@ -106,4 +107,24 @@ export async function findBestModel(chat: Chat) {
   }
 
   return null
+}
+
+export async function createTranscription(chat: Chat, filepath: string) {
+  try {
+    const client = createOpenAIClient(chat)
+    const response = await client.createTranscription(
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      fs.createReadStream(filepath) as File,
+      "whisper-1",
+    )
+
+    return response.data.text
+  } catch (error: any) {
+    if (error?.response?.status === 401) {
+      throw new BotError("openAIKeyInvalid")
+    }
+
+    throw error
+  }
 }

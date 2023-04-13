@@ -2,11 +2,12 @@ import { Chat } from "@prisma/client"
 import TelegramBot from "node-telegram-bot-api"
 import { sendMessage } from "../utils/bot"
 import { updateChat } from "../utils/chat"
-import { noMessageTextError, removeCommand } from "../utils/command"
+import { removeCommand } from "../utils/command"
+import { BotError } from "../utils/error"
 import { allModels, createAnyCompletion, Model } from "../utils/openai"
 
 export default async function setmodel(message: TelegramBot.Message, chat: Chat) {
-  if (!message.text) throw noMessageTextError()
+  if (!message.text) throw new BotError("systemError")
 
   if (!chat.openAIKey) {
     await updateChat(chat, { nextCommand: null })
@@ -14,7 +15,7 @@ export default async function setmodel(message: TelegramBot.Message, chat: Chat)
     return
   }
 
-  const openAIModel = removeCommand(message.text)
+  const openAIModel = removeCommand(message.text).toLowerCase()
 
   if (openAIModel) {
     if (!allModels.includes(openAIModel)) {

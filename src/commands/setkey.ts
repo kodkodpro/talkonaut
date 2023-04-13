@@ -2,13 +2,14 @@ import { Chat } from "@prisma/client"
 import TelegramBot from "node-telegram-bot-api"
 import { sendMessage } from "../utils/bot"
 import { updateChat } from "../utils/chat"
-import { noMessageTextError, removeCommand } from "../utils/command"
-import { findBestModel } from "../utils/openai"
+import { removeCommand } from "../utils/command"
+import { BotError } from "../utils/error"
+import { findBestAvailableCompletionModel } from "../utils/openai"
 
 const KeyRegex = /^sk-[a-zA-Z0-9]*$/
 
 export default async function setkey(message: TelegramBot.Message, chat: Chat) {
-  if (!message.text) throw noMessageTextError()
+  if (!message.text) throw new BotError("systemError")
 
   const openAIKey = removeCommand(message.text)
 
@@ -21,7 +22,7 @@ export default async function setkey(message: TelegramBot.Message, chat: Chat) {
     await sendMessage(chat, "⏱️ Checking your OpenAI key...")
 
     chat = await updateChat(chat, { openAIKey })
-    const openAIModel = await findBestModel(chat)
+    const openAIModel = await findBestAvailableCompletionModel(chat)
 
     if (!openAIModel) {
       await handleInvalidKey(chat)

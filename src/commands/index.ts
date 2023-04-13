@@ -13,7 +13,7 @@ import TelegramBot from "node-telegram-bot-api"
 
 export type CommandName =
   | "newtopic"
-  // | "switchtopic"
+  | "switchtopic"
   | "setkey"
   | "mykey"
   | "removekey"
@@ -26,6 +26,7 @@ export type CommandFn = (message: TelegramBot.Message, chat: Chat) => Promise<vo
 
 const commands: Record<CommandName, CommandFn> = {
   newtopic: await import("./newtopic").then((module) => module.default),
+  switchtopic: await import("./switchtopic").then((module) => module.default),
   setkey: await import("./setkey").then((module) => module.default),
   mykey: await import("./mykey").then((module) => module.default),
   removekey: await import("./removekey").then((module) => module.default),

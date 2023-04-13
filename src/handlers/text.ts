@@ -1,11 +1,10 @@
 import { Chat } from "@prisma/client"
 import TelegramBot from "node-telegram-bot-api"
 import commands, { CommandName } from "../commands"
-import { noMessageTextError } from "../utils/command"
 import { BotError } from "../utils/error"
 
 export default async function handleTextMessage(message: TelegramBot.Message, chat: Chat) {
-  if (!message.text) throw noMessageTextError()
+  if (!message.text) throw new BotError("systemError")
 
   // If the user is in the middle of a command, we don't want to process any other commands
   if (message.text.startsWith("/cancel")) {
