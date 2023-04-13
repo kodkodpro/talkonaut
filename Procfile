@@ -1,1 +1,1 @@
-web: pnpm start
+bot: pnpm start
