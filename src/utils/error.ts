@@ -1,12 +1,16 @@
 type ErrorCode =
   | "commandNotFound"
-  | "openAIKeyInvalid"
   | "openAIKeyNotSet"
+  | "openAIKeyInvalid"
+  | "openAIModelNotSet"
+  | "openAIModelInvalid"
 
 export const ReadableErrors: Record<ErrorCode, string> = {
   commandNotFound: "🤷‍♀️ Sorry, but I don't know this command",
-  openAIKeyInvalid: "🥴 Sorry, but your OpenAI key is invalid",
   openAIKeyNotSet: "🤷‍♀️ Sorry, but you didn't set your OpenAI key",
+  openAIKeyInvalid: "🥴 Sorry, but your OpenAI key is invalid",
+  openAIModelNotSet: "🤷‍♀️ Sorry, but you didn't set your OpenAI model",
+  openAIModelInvalid: "🥴 Sorry, but your OpenAI model is invalid",
 }
 
 export class BotError extends Error {

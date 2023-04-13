@@ -14,6 +14,7 @@ model Chat {
   id          Int          @id @default(autoincrement())
   chatId      Int          @unique
   openAIKey   String?
+  openAIModel String?
   nextCommand CommandName?
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
@@ -21,4 +22,5 @@ model Chat {
 
 enum CommandName {
   setkey
+  setmodel
 }

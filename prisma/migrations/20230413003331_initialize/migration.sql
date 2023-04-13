@@ -1,11 +1,12 @@
 -- CreateEnum
-CREATE TYPE "CommandName" AS ENUM ('setkey');
+CREATE TYPE "CommandName" AS ENUM ('setkey', 'setmodel');
 
 -- CreateTable
 CREATE TABLE "Chat" (
     "id" SERIAL NOT NULL,
     "chatId" INTEGER NOT NULL,
     "openAIKey" TEXT,
+    "openAIModel" TEXT,
     "nextCommand" "CommandName",
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
